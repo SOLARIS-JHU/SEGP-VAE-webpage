@@ -1,0 +1,19 @@
+SEGP-VAE / COPIP research project website
+
+Visual foundation adapted from SOLARIS-JHU/TQPNet by its contributors:
+https://github.com/SOLARIS-JHU/TQPNet/tree/main/website
+The adaptation also uses the TQPNet-derived Battery-MI-DPC website styles.
+
+TQPNet is licensed under the Apache License, Version 2.0; a copy is in
+LICENSE. This adaptation changes content, page structure, scientific
+figures, animation controls, navigation, and responsive styles.
+
+Original paper figures: Carl R. Richardson, Jichen Zhang, Ethan King,
+and Ján Drgoňa, Stability Enhanced Gaussian Process Variational
+Autoencoders, arXiv:2604.09331v2, licensed CC BY 4.0.
+https://creativecommons.org/licenses/by/4.0/
+
+The SOLARIS graphical abstract, institutional logos, fonts, and KaTeX
+retain their original rights and notices. Logos identify affiliations
+and do not imply institutional endorsement. See research/asset-provenance.md,
+research/design-audit.md, and bundled third-party license files.

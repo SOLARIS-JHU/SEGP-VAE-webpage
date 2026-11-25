@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SEGP-VAE | Stability Enhanced Gaussian Process Variational Autoencoders</title>
+  <meta name="description" content="Learning interpretable latent dynamics from video with a stability-enhanced Gaussian process variational autoencoder. Research by Oxford, PNNL, and Johns Hopkins University.">
+  <link rel="canonical" href="https://solaris-jhu.github.io/SEGP-VAE-webpage/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="SEGP-VAE — Learning dynamics from video">
+  <meta property="og:description" content="An interpretable dynamical model inside a variational autoencoder, with semi-contraction built into its parameters.">
+  <meta property="og:url" content="https://solaris-jhu.github.io/SEGP-VAE-webpage/">
+  <meta property="og:image" content="https://solaris-jhu.github.io/SEGP-VAE-webpage/static/og.png">
+  <meta property="og:image:alt" content="SEGP-VAE: video encoder, stability-enhanced Gaussian process, and image decoder">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Stability Enhanced Gaussian Process Variational Autoencoders">
+  <meta name="twitter:description" content="Learning interpretable dynamics from video—with stability built into the model.">
+  <meta name="twitter:image" content="https://solaris-jhu.github.io/SEGP-VAE-webpage/static/og.png">
+  <meta name="citation_title" content="Stability Enhanced Gaussian Process Variational Autoencoders">
+  <meta name="citation_author" content="Richardson, Carl R.">
+  <meta name="citation_author" content="Zhang, Jichen">
+  <meta name="citation_author" content="King, Ethan">
+  <meta name="citation_author" content="Drgoňa, Ján">
+  <meta name="citation_publication_date" content="2026/09/18">
+  <meta name="citation_arxiv_id" content="2604.09331">
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2604.09331v2">
+  <meta name="citation_abstract_html_url" content="https://arxiv.org/abs/2604.09331">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Stability Enhanced Gaussian Process Variational Autoencoders","author":[{"@type":"Person","name":"Carl R. Richardson","affiliation":{"@type":"Organization","name":"University of Oxford"}},{"@type":"Person","name":"Jichen Zhang","affiliation":{"@type":"Organization","name":"University of Oxford"}},{"@type":"Person","name":"Ethan King","affiliation":{"@type":"Organization","name":"Pacific Northwest National Laboratory"}},{"@type":"Person","name":"Ján Drgoňa","affiliation":{"@type":"Organization","name":"Johns Hopkins University"}}],"datePublished":"2026-04-10","dateModified":"2026-09-18","version":"arXiv v2","identifier":"https://doi.org/10.48550/arXiv.2604.09331","sameAs":"https://arxiv.org/abs/2604.09331","url":"https://solaris-jhu.github.io/SEGP-VAE-webpage/","image":"https://solaris-jhu.github.io/SEGP-VAE-webpage/static/og.png","codeRepository":"https://github.com/pnnl/COPIP"}</script>
+  <link rel="icon" type="image/png" href="static/logos/solaris.png">
+  <link rel="stylesheet" href="static/fonts/fonts.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="static/vendor/katex/katex.min.css">
+  <script defer src="static/vendor/katex/katex.min.js"></script>
+  <script defer src="static/vendor/katex/auto-render.min.js"></script>
+  <script defer src="static/abstract/graphical-abstract.js"></script>
+  <script defer src="main.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<nav class="site-nav wrap" aria-label="Project navigation">
+  <a class="brand" href="https://solaris-jhu.github.io/solaris-website/">SOLARIS LAB</a>
+  <div class="nav-links"><a href="#problem">Overview</a><a href="#method">Method</a><a href="#results">Results</a><a href="#resources">Resources</a></div>
+</nav>
+<main id="main">
+  <section class="hero" aria-labelledby="paper-title">
+    <div class="wrap">
+      <header class="hero-head">
+        <p class="eyebrow"><span class="pill">IEEE CDC 2026</span> Accepted paper · arXiv v2</p>
+        <h1 id="paper-title">Stability Enhanced Gaussian Process Variational Autoencoders</h1>
+        <p class="authors">
+          <span><a href="https://eng.ox.ac.uk/people/carl-richardson">Carl R. Richardson</a><sup>1,*</sup></span>
+          <span><a href="https://www.turing.ac.uk/people/former-enrichment-students/jichen-zhang">Jichen Zhang</a><sup>1,*</sup></span>
+          <span><a href="https://www.pnnl.gov/people/ethan-king">Ethan King</a><sup>2</sup></span>
+          <span><a href="https://engineering.jhu.edu/case/faculty/jan-drgona/">Ján Drgoňa</a><sup>3</sup></span>
+        </p>
+        <p class="affiliations"><sup>1</sup> Department of Engineering Science, University of Oxford<br><sup>2</sup> Pacific Northwest National Laboratory<br><sup>3</sup> Johns Hopkins University<br><span class="equal-contribution">* Equal contribution</span></p>
+        <div class="buttons" aria-label="Paper resources">
+          <a class="btn btn-primary" href="https://arxiv.org/abs/2604.09331">arXiv</a>
+          <a class="btn" href="https://github.com/pnnl/COPIP">Code</a>
+          <a class="btn" href="https://css.paperplaza.net/conferences/conferences/CDC26/program/CDC26_ContentListWeb_3.html#webt7_02">CDC 2026</a>
+          <a class="btn" href="#citation">BibTeX</a>
+        </div>
+      </header>
+      <p class="summary"><strong>Learning interpretable dynamics from video—with stability built into the model.</strong><br>A variational autoencoder connects pixels to a Gaussian process derived from a linear dynamical system. A structured parameterization keeps the learned latent dynamics semi-contracting throughout training.</p>
+      <div class="logos" aria-label="Participating institutions">
+        <a href="https://www.ox.ac.uk/" aria-label="University of Oxford"><img src="static/logos/oxford-engineering.svg" alt="University of Oxford, Department of Engineering Science" width="297" height="90"></a>
+        <a href="https://www.pnnl.gov/" aria-label="Pacific Northwest National Laboratory"><img class="pnnl-logo" src="static/logos/pnnl.svg" alt="Pacific Northwest National Laboratory" width="400" height="400"></a>
+        <a href="https://engineering.jhu.edu/" aria-label="Johns Hopkins Whiting School of Engineering"><img src="static/logos/jhu-whiting.svg" alt="Johns Hopkins Whiting School of Engineering" width="240" height="64"></a>
+      </div>
+      <figure class="graphical-abstract">
+        <object id="abstract-animation" data="static/abstract/graphical-abstract.svg" type="image/svg+xml" aria-label="Animated overview: video encoding, an LTI-derived Gaussian process with semi-contracting dynamics, and decoded images.">
+          <img src="static/abstract/graphical-abstract.svg" width="760" height="392" alt="Video frames pass through an encoder, a stability-enhanced Gaussian process, and a decoder.">
+        </object>
+        <div class="abstract-controls"><button class="btn" id="toggle-animation" type="button" disabled>Play animation</button><button class="btn" id="restart-animation" type="button" disabled>Restart</button><a href="static/abstract/graphical-abstract.svg">Static SVG</a></div>
+        <figcaption>The SOLARIS graphical abstract connects video observations, the LTI-derived GP, and reconstructed images. Pendulum icons and moving latent markers are illustrative; the paper’s experiments below use simulated spiralling particles.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="problem" aria-labelledby="problem-title">
+    <div class="wrap">
+      <h2 id="problem-title">From what a camera sees to how a system evolves</h2>
+      <div class="two-col">
+        <div class="prose">
+          <p>A video can reveal a physical process without directly measuring its state. Learning a compact representation is only part of the challenge: the latent model should also describe the dynamics and their uncertainty.</p>
+          <p>The stability-enhanced Gaussian process variational autoencoder (SEGP-VAE) combines an image encoder and decoder with a dynamical Gaussian process (GP) prior. Its mean and covariance follow from a linear time-invariant (LTI) system, including uncertain initial conditions and a stochastic input.</p>
+          <p class="small">Research summary of Sections III–V. The model assumes a Gaussian input process with known mean and covariance, Gaussian initial conditions independent of that input, and Gaussian latent observation noise.</p>
+        </div>
+        <div class="equation-card">
+          <h3>A dynamical model inside the GP</h3>
+          <div class="math">$$\dot{\mathbf{x}}(t)=A\mathbf{x}(t)+B\mathbf{u}(t),\qquad \mathbf{y}(t)=C\mathbf{x}(t)+D\mathbf{u}(t)$$</div>
+          <p>The state \(\mathbf{x}\) evolves continuously in time; \(\mathbf{y}\) is the latent output connected to the images. The system’s analytical solution defines the GP prior.</p>
+          <div class="math">$$\mathbf{y}(t)\sim\mathcal{GP}\!\left(\boldsymbol{\mu}_{y}(t),K_y(t,t')\right)$$</div>
+          <p class="small">Theorem 1 derives both functions from \(A,B,C,D\), the input process, and the initial-state distribution. This gives the covariance a dynamical interpretation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="method" aria-labelledby="method-title">
+    <div class="wrap">
+      <h2 id="method-title">Encode observations. Condition the dynamics. Reconstruct the video.</h2>
+      <p class="prose">The graphical abstract follows the inference path below. During offline training, reconstruction and distribution-matching losses connect all stages so the encoder, decoder, and GP parameters learn together.</p>
+      <ol class="method-steps">
+        <li><h3>Encode each frame</h3><p>The encoder produces a latent mean and a positive diagonal covariance. These act as noisy latent observations, rather than directly measured physical states.</p></li>
+        <li><h3>Condition the GP</h3><p>Combine those observations with the LTI-derived prior using Gaussian conditioning. The result is a tractable variational posterior over a temporally connected latent trajectory.</p></li>
+        <li><h3>Sample and decode</h3><p>Draw latent samples with the reparameterization trick and pass them through the decoder. For the binary videos in this study, the decoder parameterizes a Bernoulli image likelihood.</p></li>
+        <li><h3>Learn the complete model</h3><p>Jointly train the encoder, decoder, and dynamical parameters with reconstruction, Kullback–Leibler (KL) regularization, and a task-specific penalty. The particle example adds an \(L_1\) penalty on \(A\).</p></li>
+      </ol>
+      <div class="theory-panel">
+        <div>
+          <h3>Stability is built into the parameters</h3>
+          <p>Constructing the state matrix from triangular and skew-symmetric factors makes the semi-contraction condition hold by construction. Training can use an unconstrained optimizer while staying within this class of dynamics.</p>
+          <p class="small">For two trajectories driven by the same input, distance in the learned \(P\)-metric cannot increase. Semi-contraction allows marginal modes; it does not require exponential convergence.</p>
+        </div>
+        <div>
+          <div class="math">$$P=V_1V_1^{\top},\qquad A=P^{-1}\!\left(-\tfrac12 V_2V_2^{\top}+V_3\right)$$</div>
+          <div class="math">$$PA+A^{\top}P=-V_2V_2^{\top}\preceq0$$</div>
+          <p class="small">Theorems 2–3 and Appendix A. \(V_1\) is lower triangular with positive diagonal, \(V_2\) is lower triangular with nonnegative diagonal, and \(V_3^{\top}=-V_3\).</p>
+        </div>
+      </div>
+      <h3 class="subsection">What makes the particle example work</h3>
+      <p class="prose">The case-study encoder uses convolutional features and a spatial softmax to locate the particle, then converts its position to polar coordinates and unwraps the angle over time. Learned scaling and uncertainty produce the GP observations. This coordinate-aware encoder and the \(L_1\) penalty help recover meaningful internal dynamics from a system whose input–output behavior alone does not identify a unique state-space realization.</p>
+      <p class="source">The general method is in Sections IV–V; the polar encoder, regularization, and known \(B,C,D\) structure are case-study choices in Section VI.</p>
+    </div>
+  </section>
+
+  <section id="results" aria-labelledby="results-title">
+    <div class="wrap">
+      <h2 id="results-title">Recovering the dynamics behind a spiralling particle</h2>
+      <p class="prose"><strong>The full model recovers the latent dynamics with a reported state-matrix 2-norm error of 0.02—while reconstructing the observed motion.</strong></p>
+      <p class="prose">The study uses simulated particle videos: 40,000 sequences, each with 25 binary frames at 40 × 40 pixels. A two-dimensional state tracks radius and angle. The true dynamics have radial decay and an input-driven angle; \(B,C,D\) are known while \(A\) is learned.</p>
+      <figure class="figure figure-wide">
+        <a href="static/figures/fig10-reconstruction.png"><img src="static/figures/fig10-reconstruction.png" width="922" height="562" loading="lazy" alt="Original Figure 10: test video trajectories above, latent coordinates and GP posterior means in the middle, and corresponding reconstructed videos below."></a>
+        <figcaption>Figure 10. Original test examples: observed videos (top), latent trajectories and posterior means (middle), and reconstructed videos (bottom). Frames are overlaid to show the motion.</figcaption>
+      </figure>
+
+      <h3 class="subsection">Stability, coordinates, and regularization each matter</h3>
+      <p class="prose">Three ablations isolate the stability parameterization, the specialized encoder, and the state-matrix penalty. Several alternatives approximate the transfer function, yet recover different internal dynamics. The complete model gives the smallest state-matrix error in this experiment.</p>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Scrollable state-matrix error table">
+        <table>
+          <caption>State-matrix error after 600 training epochs — Table I</caption>
+          <thead><tr><th scope="col">Model</th><th scope="col">Change from full model</th><th scope="col">\(\|\hat A-A_i\|_2\)</th></tr></thead>
+          <tbody>
+            <tr class="highlight"><th scope="row">SEGP-VAE</th><td>Full method</td><td>0.02</td></tr>
+            <tr><th scope="row">PEGP-VAE</th><td>No stability parameterization</td><td>0.63</td></tr>
+            <tr><th scope="row">MLP2-VAE</th><td>Replace specialized encoder with a multilayer perceptron</td><td>0.63</td></tr>
+            <tr><th scope="row">NREG-VAE</th><td>No state-matrix regularization</td><td>2.53</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small">The metric is the matrix spectral norm, with \(\hat A=\operatorname{diag}(-0.6,0)\). The paper does not specify aggregation over repeated training runs, or report hardware, batch size, or repeated-run uncertainty for this comparison.</p>
+      <figure class="figure figure-wide">
+        <a href="static/figures/fig5-ablation.png"><img src="static/figures/fig5-ablation.png" width="1702" height="904" loading="lazy" alt="Original Figure 5 comparing prior and posterior angular-position absolute error and variance for the PEGP, MLP2, and NREG ablations; original axes and legends retained."></a>
+        <figcaption>Figure 5. The three ablations: angular-position absolute error (left) and variance (right), averaged over the test set. Recovering the transfer function alone does not ensure a useful latent representation.</figcaption>
+      </figure>
+
+      <h3 class="subsection">Video observations refine the latent prediction</h3>
+      <p class="prose">Conditioning the dynamical prior on encoded images sharpens the latent estimate. The original example below separates the prior from the posterior and retains the reported uncertainty bands.</p>
+      <figure class="figure figure-medium">
+        <a href="static/figures/fig6-segp-posterior.png"><img src="static/figures/fig6-segp-posterior.png" width="1200" height="800" loading="lazy" alt="Original Figure 6: radius and angle for a test trajectory, comparing the SEGP-VAE prior above with its video-conditioned posterior below, including 95 percent confidence bands."></a>
+        <figcaption>Figure 6. One randomly sampled test trajectory: radius on the left and angle on the right; prior above and posterior below. Bands are labeled 95% CI in the source. Posterior conditioning uses observations from the video; this is not an unobserved-future rollout benchmark.</figcaption>
+      </figure>
+      <p class="source">Results and figures: arXiv v2, Section VI-D and Table I. Original paper figures are reproduced under CC BY 4.0; no experimental curves have been regenerated.</p>
+    </div>
+  </section>
+
+  <section class="alt" id="scope" aria-labelledby="scope-title">
+    <div class="wrap">
+      <h2 id="scope-title">What the results establish</h2>
+      <ul class="scope-list">
+        <li><strong>A guarantee about the latent dynamics.</strong> The parameterization enforces semi-contraction in a positive-definite metric. It does not guarantee correct identification, bounded responses to arbitrary inputs, or stability of a downstream controller.</li>
+        <li><strong>An interpretable model with prior structure.</strong> The general formulation allows trainable \(B,C,D\); the particle experiment fixes them and uses a polar-coordinate encoder. Stability alone is insufficient to recover the physical coordinates.</li>
+        <li><strong>A simulated video study.</strong> The evaluation concerns one particle system, with no physical control deployment or broad video benchmark. Learning nonlinear dynamics through Koopman observables and reducing GP cost with sparse approximations remain future directions.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="resources" aria-labelledby="resources-title">
+    <div class="wrap">
+      <h2 id="resources-title">Explore the paper and implementation</h2>
+      <p class="prose">The COPIP repository provides PyTorch implementations of the GP and variational autoencoder, a synthetic-data generator, and released model weights. Its README describes the training workflow.</p>
+      <div class="resource-links"><a href="https://arxiv.org/html/2604.09331v2">Read the paper</a><a href="https://github.com/pnnl/COPIP">Source code &amp; weights</a><a href="https://github.com/pnnl/COPIP/blob/master/Code/DataGeneration/DataGeneration_Particle.py">Data generator</a><a href="https://github.com/pnnl/COPIP/blob/master/Code/SEGP/SEGP.py">SEGP implementation</a></div>
+      <details><summary>Paper and implementation versions</summary><p>This page follows arXiv v2, revised 18 September 2026. The paper is listed in the official IEEE CDC 2026 program; the citation below identifies the available preprint. Some released code defaults differ from the manuscript. The repository’s internal source map records these differences; the figures and table here report the paper’s experiments.</p></details>
+      <h3 class="subsection" id="citation">Citation</h3>
+      <div class="bibtex-box">
+        <div class="bibtex-toolbar"><span>arXiv preprint · <a href="citation.bib" download>Download BibTeX</a></span><button id="copy-bibtex" class="btn" type="button">Copy BibTeX</button></div>
+        <pre><code id="bibtex">@misc{richardson2026stability,
+  title = {Stability Enhanced Gaussian Process Variational Autoencoders},
+  author = {Carl R. Richardson and Jichen Zhang and Ethan King and J{\'a}n Drgo{\v{n}}a},
+  year = {2026},
+  eprint = {2604.09331},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.LG},
+  doi = {10.48550/arXiv.2604.09331},
+  url = {https://arxiv.org/abs/2604.09331v2}
+}</code></pre>
+        <p id="copy-status" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <p><a href="https://solaris-jhu.github.io/solaris-website/">SOLARIS Lab</a> · <a href="https://github.com/SOLARIS-JHU/SEGP-VAE-webpage">Website source</a> · Design adapted from <a href="https://solaris-jhu.github.io/TQPNet/">TQPNet</a>.</p>
+    <p class="funding">Research supported by the UKRI Centre for Doctoral Training in Machine Intelligence for Nano-electronic Devices and Systems (EP/S024298/1) and PNNL’s AT SCALE initiative through Laboratory Directed Research and Development. PNNL is operated by Battelle for the U.S. Department of Energy under Contract DE-AC05-76RL0-1830.</p>
+  </div>
+</footer>
+</body>
+</html>
