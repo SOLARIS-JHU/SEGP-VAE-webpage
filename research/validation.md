@@ -1,6 +1,6 @@
 # Validation record
 
-Prepared 25 November 2026.
+Published 25 November 2026.
 
 ## Completed
 
@@ -14,9 +14,20 @@ Prepared 25 November 2026.
 - Responsive source review checks grid collapse, math/table scrolling, image aspect ratios, flexible controls, alt text, headings, keyboard focus styles and skip navigation.
 - Oxford logo repaired only by removing unused duplicate IDs; visual geometry unchanged.
 
-## Pending environment-dependent checks
+## Publication
 
-- Desktop/mobile browser rendering, browser-console inspection and end-to-end keyboard/clipboard/playback checks: no supported browser-control tool is available in this session. Static/source checks do not replace these.
-- The user created the public `SOLARIS-JHU/SEGP-VAE-webpage` repository. Upload and deployment are being completed using the existing GitHub connection. No live deployment is claimed until its workflow and live assets have been verified.
+- Repository: https://github.com/SOLARIS-JHU/SEGP-VAE-webpage
+- Live website: https://solaris-jhu.github.io/SEGP-VAE-webpage/
+- Validated source commit: `3cf1eb1f41b2ff460096d838c31f20233cf00fbc`.
+- Main validation workflow succeeded: https://github.com/SOLARIS-JHU/SEGP-VAE-webpage/actions/runs/45691068844
+- Publishing branch: `gh-pages`, commit `f7845e409b540f081e820fb018f326f624d2e4cb`.
+- GitHub Pages build/deployment succeeded: https://github.com/SOLARIS-JHU/SEGP-VAE-webpage/actions/runs/45691091940
+- Live HTML returned HTTP 200 and matched the validated local page exactly.
+- All 40 local assets directly referenced by HTML/CSS returned HTTP 200 and matched local SHA-256 hashes, including the graphical abstract SVG, animation updater, main script, original result figures, fonts and KaTeX.
+- Canonical and social URLs use `/SEGP-VAE-webpage/`; no obsolete `/COPIP-webpage/` public URL remains.
 
-After publication, record the deployment commit/run and verify the actual live HTML and referenced assets. A source commit alone is not deployment success.
+Main pushes run validation and package the site. The built-in Pages workflow publishes authenticated user-origin updates to `gh-pages`. The included custom deployment job is available when manually dispatched from the publishing branch; it intentionally skips `main` to respect the Pages environment's branch policy.
+
+## Remaining verification limitation
+
+No supported browser-control tool was available in this session. Desktop/mobile visual rendering, browser-console inspection, and end-to-end keyboard/clipboard/playback interaction checks remain unverified. Source checks, image inspection, animation-function tests and live HTTP/hash checks do not replace those browser checks.
